@@ -1,4 +1,3 @@
-// server.js
 const express = require('express')
 const { exec } = require('child_process')
 const cors = require('cors')
@@ -12,13 +11,7 @@ const port = process.env.PORT || 5000
 
 app.post('/download-audio', (req, res) => {
     const { youtubeLink, user } = req.body
-    let downloadDirectory
-
-    if (user) {
-        downloadDirectory = `/Users/kev/Documents/${user}'s Music`
-    } else {
-        downloadDirectory = `/Users/kev/Documents/Music`
-    }
+    const downloadDirectory = user ? `/Users/kev/Documents/${user}'s Music` : `/Users/kev/Documents/Music`
 
     // Create the download directory if it doesn't exist
     if (!fs.existsSync(downloadDirectory)) {
